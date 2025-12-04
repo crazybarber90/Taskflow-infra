@@ -11,8 +11,9 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { format, isToday } from 'date-fns'
 import TaskModal from './TaskModal'
+import { API_BASE } from '../config/api'
 
-const API_BASE = 'http://localhost:4000/api/tasks'
+// const API_BASE = 'http://localhost:4000/api/tasks'
 
 type TaskItemProps = {
   task: TaskI
@@ -39,6 +40,7 @@ const TaskItem = ({
   )
   const [showEditModal, setShowEditModal] = useState(false)
 
+  console.log('API BAZE FROM TASKITEM', API_BASE)
   useEffect(() => {
     setIsCompleted(
       [true, 1, 'Yes'].includes(

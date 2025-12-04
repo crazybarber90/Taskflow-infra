@@ -13,6 +13,7 @@ import type { TaskI } from '../types/taskType'
 import axios from 'axios'
 import Sidebar from './Sidebar'
 import { Circle, Clock, TrendingUp, Zap } from 'lucide-react'
+import { API_BASE } from '../config/api'
 
 type LayoutProps = {
   user: UserI
@@ -38,7 +39,7 @@ const Layout = ({ user, onLogout }: LayoutProps) => {
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No Auth Token found')
 
-      const { data } = await axios.get('http://localhost:4000/api/tasks/gp', {
+      const { data } = await axios.get(`${API_BASE}/gp`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

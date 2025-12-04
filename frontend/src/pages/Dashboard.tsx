@@ -25,8 +25,9 @@ import { useOutletContext } from 'react-router-dom'
 import TaskItem from '../components/TaskItem'
 import axios from 'axios'
 import TaskModal from '../components/TaskModal'
+import { API_BASE } from '../config/api'
 
-const API_BASE = 'http://localhost:4000/api/tasks'
+// const API_BASE = 'http://localhost:4000/api/tasks'
 type FilterType = keyof typeof FILTER_LABELS
 
 const Dashboard = ({ onLogout }: { onLogout: () => void }) => {

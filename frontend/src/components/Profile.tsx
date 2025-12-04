@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom'
 import type { UserI } from '../types/userType'
 import axios from 'axios'
 
-const API_URL = 'http://localhost:4000'
+import { API_URL } from '../config/api'
 
 type ProfileProps = {
   setCurrentUser: React.Dispatch<React.SetStateAction<UserI | null>>
@@ -57,7 +57,7 @@ const Profile = ({ setCurrentUser, onLogout }: ProfileProps) => {
     const token = localStorage.getItem('token')
     if (!token) return
     axios
-      .get(`${API_URL}/api/user/me`, {
+      .get(`${API_URL}/user/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,7 +75,7 @@ const Profile = ({ setCurrentUser, onLogout }: ProfileProps) => {
     try {
       const token = localStorage.getItem('token')
       const { data } = await axios.put(
-        `${API_URL}/api/user/profile`,
+        `${API_URL}/user/profile`,
         { name: profile.name, email: profile.email },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -113,7 +113,7 @@ const Profile = ({ setCurrentUser, onLogout }: ProfileProps) => {
     try {
       const token = localStorage.getItem('token')
       const { data } = await axios.put(
-        `${API_URL}/api/user/password`,
+        `${API_URL}/user/password`,
         { currentPassword: passwords.current, newPassword: passwords.new },
         {
           headers: { Authorization: `Bearer ${token}` },

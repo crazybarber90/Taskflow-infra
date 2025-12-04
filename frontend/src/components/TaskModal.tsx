@@ -14,8 +14,8 @@ import {
   Save,
   X,
 } from 'lucide-react'
-
-const API_BASE = 'http://localhost:4000/api/tasks'
+import { API_BASE } from '../config/api'
+// const API_BASE = 'http://localhost:4000/api/tasks'
 type TaskModalProps = {
   isOpen: boolean
   onClose: () => void

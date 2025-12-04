@@ -4,6 +4,7 @@ import { Eye, EyeOff, Lock, LogIn, Mail } from 'lucide-react'
 import { INPUTWRAPPER, BUTTON_CLASSES } from '../assets/dummy'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { API_URL } from '../config/api'
 
 type LoginUser = {
   token: string
@@ -43,7 +44,6 @@ const Login = ({ onSubmit, onSwitchMode }: LoginProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [rememberMe, setRememberMe] = useState<boolean>(false)
   const navigate = useNavigate()
-  const url = 'http://localhost:4000'
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -52,7 +52,7 @@ const Login = ({ onSubmit, onSwitchMode }: LoginProps) => {
     if (token) {
       ;(async () => {
         try {
-          const { data } = await axios.get(`${url}/api/user/me`, {
+          const { data } = await axios.get(`${API_URL}/user/me`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           if (data.success) {
@@ -78,7 +78,7 @@ const Login = ({ onSubmit, onSwitchMode }: LoginProps) => {
 
     try {
       const response = await axios.post<LoginResponse>(
-        `${url}/api/user/login`,
+        `${API_URL}/user/login`,
         formData
       )
       const data = response.data
@@ -129,7 +129,7 @@ const Login = ({ onSubmit, onSwitchMode }: LoginProps) => {
       icon: Lock,
     },
   ]
-
+  console.log('API URL FROM SignUp', API_URL)
   return (
     <div className="max-w-md bg-white w-full shadow-lg border-purple-100 rounded-xl p-8">
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />

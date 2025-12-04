@@ -9,6 +9,7 @@ import {
   MESSAGE_SUCCESS,
 } from '../assets/dummy'
 import axios from 'axios'
+import { API_URL } from '../config/api'
 
 type SignUpProps = {
   onSubmit: (data: UserI) => void
@@ -37,7 +38,7 @@ const MESSAGES: InitMessage = {
   type: '',
 }
 
-const API_URL = 'http://localhost:4000'
+// const API_URL = 'http://localhost:4000'
 
 const SignUp = ({ onSwitchMode }: SignUpProps) => {
   const [formData, setFormData] = useState(INITIAL_FORM)
@@ -50,7 +51,7 @@ const SignUp = ({ onSwitchMode }: SignUpProps) => {
     setMessage({ text: '', type: '' })
 
     try {
-      const data = await axios.post(`${API_URL}/api/user/register`, formData)
+      const data = await axios.post(`${API_URL}/user/register`, formData)
 
       if (data) {
         setMessage({
@@ -81,6 +82,8 @@ const SignUp = ({ onSwitchMode }: SignUpProps) => {
       setLoading(false)
     }
   }
+
+  console.log('API URL FROM SignUp', API_URL)
 
   return (
     <div className="max-w-md w-full bg-white shadow-lg border border-purple-100 rounded-xl p-8">
