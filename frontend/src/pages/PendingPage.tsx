@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { layoutClasses, SORT_OPTIONS } from '../assets/dummy'
 import { Clock, Filter, ListCheck, Plus } from 'lucide-react'
 import { useOutletContext } from 'react-router-dom'
