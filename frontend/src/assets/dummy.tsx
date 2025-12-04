@@ -12,44 +12,8 @@ import {
   Award,
   Edit2,
   Trash2,
-  MoreVertical,
-  Clock,
-  Calendar,
 } from 'lucide-react'
 import type { TaskI } from '../types/taskType'
-
-// BACKEND TEST
-// DUMMY DATA
-const backendDummy = [
-  {
-    title: 'Buy groceries',
-    description: 'Milk, bread, eggs, and spinach',
-    priority: 'Low',
-    dueDate: '2025-05-02T18:00:00.000Z',
-    completed: 'No',
-  },
-  {
-    title: 'Book dentist appointment',
-    description: 'Routine check-up and cleaning',
-    priority: 'Medium',
-    dueDate: '2025-05-10T10:00:00.000Z',
-    completed: true,
-  },
-  {
-    title: 'Book dentist appointment',
-    description: 'Routine check-up and cleaning',
-    priority: 'Medium',
-    dueDate: '2025-05-10T10:00:00.000Z',
-    completed: true,
-  },
-  {
-    title: 'Pay utility bills',
-    description: 'Electricity and water bills for April',
-    priority: 'High',
-    dueDate: '2025-04-28T12:00:00.000Z',
-    completed: 'Yes',
-  },
-]
 
 // FRONTEND DUMMY DATA
 
@@ -172,7 +136,7 @@ export const MESSAGE_ERROR =
 
 // TASK ITEM
 export const getPriorityColor = (priority: string) => {
-  const colors = {
+  const colors: { [key: string]: string } = {
     low: 'border-green-500 bg-green-50/50 text-green-700',
     medium: 'border-purple-500 bg-purple-50/50 text-purple-600',
     high: 'border-fuchsia-800 bg-fuchsia-50/50 text-fuchsia-800',
@@ -184,7 +148,7 @@ export const getPriorityColor = (priority: string) => {
 }
 
 export const getPriorityBadgeColor = (priority: string) => {
-  const colors = {
+  const colors: { [key: string]: string } = {
     low: 'bg-green-100 text-green-900',
     medium: 'bg-purple-100 text-purple-900',
     high: 'bg-fuchsia-300 text-fuchsia-900',

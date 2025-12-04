@@ -13,7 +13,7 @@ const CompletePage = () => {
 
   const [sortBy, setSortBy] = useState<string>('newest')
 
-  const isCompleted = (val: any): boolean => {
+  const isCompleted = (val: string | number | boolean): boolean => {
     return ['yes', 'true', '1'].includes(String(val).toLowerCase())
   }
 
