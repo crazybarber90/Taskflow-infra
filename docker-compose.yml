@@ -1,5 +1,4 @@
 version: '3.9'
-# new !
 
 services:
   backend:
@@ -9,27 +8,32 @@ services:
     env_file:
       - ./backend/.env
     ports:
-      - '4000:4000' # Dostupno hostu za proxy_pass sa host nginx-a
+      - '4000:4000' # backend HTTP port
+    networks:
+      - tasknet
 
   frontend:
     build: ./frontend
     container_name: taskflow-frontend
     restart: always
-    # Ovaj port više nije potreban, jer će Docker Nginx služiti SPA
-    # ports:
-    #   - '3000:80'
+    # frontend SE NE IZLAŽE NA HOST — služi ga nginx container
+    networks:
+      - tasknet
 
   nginx:
     image: nginx:alpine
     container_name: taskflow-nginx
     restart: always
     ports:
-      - '8080:80' # Docker Nginx port, host Nginx će proxy-pass
-      - '8443:443' # Docker Nginx SSL port
+      - '8080:80' # host koristi samo port 8080 (HTTP)
     volumes:
       - ./nginx/taskflow-nikola.conf:/etc/nginx/conf.d/default.conf:ro
       - ./frontend/dist:/usr/share/nginx/html:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - frontend
       - backend
+    networks:
+      - tasknet
+
+networks:
+  tasknet:
