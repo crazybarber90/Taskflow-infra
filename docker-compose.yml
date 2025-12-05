@@ -1,14 +1,18 @@
 version: '3.9'
 
 services:
-  frontend:
-    build: ./frontend
-    container_name: taskflow-frontend
-    ports:
-      - '8080:80'
-
   backend:
     build: ./backend
     container_name: taskflow-backend
+    restart: always
+    env_file:
+      - ./backend/.env
     ports:
       - '4000:4000'
+
+  frontend:
+    build: ./frontend
+    container_name: taskflow-frontend
+    restart: always
+    ports:
+      - '3000:80'
