@@ -22,7 +22,7 @@ services:
     container_name: taskflow-nginx
     restart: always
     ports:
-      - '8080:80' # Docker nginx port koji host nginx prosleđuje
+      - '8080:80' # Docker nginx port koji host nginx prosleđuje!
     volumes:
       - ./nginx/taskflow.conf:/etc/nginx/conf.d/default.conf:ro
       - ./frontend/dist:/usr/share/nginx/html:ro
