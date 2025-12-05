@@ -1,36 +1,14 @@
 version: '3.9'
 
 services:
-  backend:
-    build: ./backend
-    container_name: taskflow-backend
-    restart: always
-    env_file:
-      - ./backend/.env
-    networks:
-      - tasknet
-
   frontend:
     build: ./frontend
     container_name: taskflow-frontend
-    restart: always
-    networks:
-      - tasknet
-
-  nginx:
-    image: nginx:alpine
-    container_name: taskflow-nginx
-    restart: always
     ports:
-      - '8080:80' # Docker nginx port koji host nginx prosleđuje!!
-    volumes:
-      - ./nginx/taskflow.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./frontend/dist:/usr/share/nginx/html:ro
-    depends_on:
-      - frontend
-      - backend
-    networks:
-      - tasknet
+      - '8080:80'
 
-networks:
-  tasknet:
+  backend:
+    build: ./backend
+    container_name: taskflow-backend
+    ports:
+      - '4000:4000'

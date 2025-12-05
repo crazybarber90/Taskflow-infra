@@ -1,13 +1,10 @@
+# backend/Dockerfile
 FROM node:18-alpine
-
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install --omit=dev
-
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
 
-ENV PORT=4000
 EXPOSE 4000
-
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]  # ili entrypoint tvoje app
