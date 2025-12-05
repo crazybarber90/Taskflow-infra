@@ -15,4 +15,4 @@ services:
     container_name: taskflow-frontend
     restart: always
     ports:
-      - '3000:80'
+      - '8080:80'
